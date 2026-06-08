@@ -1,1 +1,2 @@
 git ls-files | findstr .env
+.env

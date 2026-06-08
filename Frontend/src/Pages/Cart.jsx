@@ -3,8 +3,9 @@ import { ShopContext } from '../Context/ShopContext'
 import Title from '../Components/Title'
 import { assets } from '../assets/frontend_assets/assets'
 import CartTotal from '../Components/CartTotal'
+import { toast } from 'react-toastify'
 const Cart = () => {
-  const {products,currency,cartItems,updateQuantity,navigate,token} = useContext(ShopContext)
+  const {products,currency,cartItems,updateQuantity,navigate,token,cartAmount} = useContext(ShopContext)
   const [cartData,setCartData] = useState([])
   useEffect(()=>{
       if(!token){
@@ -31,6 +32,14 @@ const Cart = () => {
     
   },[cartItems,products])
 
+      const placeOrder = ()=>{
+        if(cartAmount() === 0){
+            toast.error("Please Select atleast 1 product first!")
+          navigate('/collection')
+        }else{
+          navigate('/place-order')
+        } 
+      }
   return (
     <div className='pt-10'>
       <div className='sm:ml-40 ml-4'>
@@ -64,12 +73,12 @@ const Cart = () => {
         <div className='w-full mr-4 sm:w-[500px]'>
          <CartTotal/>
          <div>
-            <button  onClick={()=>navigate('/place-order')} className=' mt-10 bg-black text-white text-sm sm:text-lg rounded px-3 py-2 hover:bg-green-800 '>PROCEED TO CHECKOUT</button>
+            <button  onClick={()=>placeOrder()} className=' mt-10 bg-black text-white text-sm sm:text-lg rounded px-3 py-2 hover:bg-green-800 '>PROCEED TO CHECKOUT</button>
          </div>
         </div>
         
       </div>
-      
+      {/* ()=>navigate('/place-order') */}
 
     </div>
   )

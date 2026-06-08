@@ -18,6 +18,7 @@ const ShopContextProvider = (props)=>{
       if(!token){
          toast.error('Please Login First!')
          navigate('/login')
+         return;
       }
       if(!size && token){
          toast.error('Please select a size')
@@ -44,7 +45,7 @@ const ShopContextProvider = (props)=>{
                   )
                } catch (error) {
                   console.log(error);
-                  toast.error(error.message)
+                   toast.error(error.response?.data?.message ||error.message)
                }
             }
     }
@@ -79,7 +80,7 @@ const ShopContextProvider = (props)=>{
 
          } catch (error) {
               console.log(error);
-                  toast.error(error.message)
+                   toast.error(error.response?.data?.message ||error.message)
                
          }
       }
@@ -93,7 +94,7 @@ try {
    }
 } catch (error) {
    console.log(error);
-   toast.error(error.message)
+   toast.error(error.response?.data?.message ||error.message)
    
    
 }
@@ -129,7 +130,7 @@ const getProductsData = async()=>{
       }
       
    } catch (error) {
-      toast.error(error.message)
+     toast.error(error.response?.data?.message ||error.message)
    }
 }
 useEffect(()=>{

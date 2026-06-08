@@ -6,6 +6,7 @@ import { ShopContext } from '../Context/ShopContext'
 const Navbar = () => {
     const [visible, setVisible] = useState(false)
     const {setShowSearch,getCartCount,navigate,token,setToken,setCartItems} = useContext(ShopContext)
+  
      const navLinkClass = ({ isActive }) =>
     `flex items-center gap-1 text-lg font-medium ${
       isActive ? 'text-blue-500' : 'text-gray-900 hover:text-blue-500'
@@ -72,6 +73,14 @@ const Navbar = () => {
                 <NavLink onClick={()=>setVisible(false)} className='py-2 pl-6 border-1 font-bold' to='/collection' >COLLECTION</NavLink>
                 <NavLink onClick={()=>setVisible(false)} className='py-2 pl-6 border-1 font-bold' to='/about' >ABOUT</NavLink>
                 <NavLink onClick={()=>setVisible(false)} className='py-2 pl-6 border-1 font-bold' to='/contact' >CONTACT</NavLink>
+                {token ?
+                 <>
+                   <NavLink onClick={()=>setVisible(false)} className='py-2 pl-6 border-1 font-bold'to='/orders' ><p>Orders</p></NavLink>
+                    <NavLink onClick={()=>setVisible(false)} className='py-2 pl-6 border-1 font-bold' onClick={logout} to='/login' ><p>Logout</p></NavLink>
+                 </>:
+                 <>
+                 <NavLink onClick={()=>setVisible(false)} className='py-2 pl-6 border-1 font-bold'to='/login'><p>Login</p></NavLink>
+                 </>}
 
                 </div></div>
        </div>
