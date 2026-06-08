@@ -57,6 +57,7 @@ cd Frontend
 npm install
 npm run dev
 
+## Environment variables
 PORT=4000
 MONGO_URI=your_mongo_url
 JWT_SECRET=your_secret
